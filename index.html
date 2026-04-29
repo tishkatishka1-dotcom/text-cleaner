@@ -23,18 +23,31 @@ button { padding: 10px; margin: 5px; }
 <textarea id="output"></textarea>
 
 <br><br>
-<p>Free version has limits. Unlock PRO to use all features without restrictions.</p>
+
+<p>Free version limit: 200 characters. Unlock PRO for unlimited access.</p>
 <button class="pro" onclick="goPay()">Unlock PRO ($5)</button>
 
 <script>
 function cleanText() {
   let text = document.getElementById("input").value;
+
+  if (text.length > 200) {
+    alert("Free version limit: 200 characters. Unlock PRO for unlimited.");
+    return;
+  }
+
   text = text.replace(/\s+/g, ' ').trim();
   document.getElementById("output").value = text;
 }
 
 function makeUpper() {
   let text = document.getElementById("input").value;
+
+  if (text.length > 200) {
+    alert("Free version limit: 200 characters. Unlock PRO for unlimited.");
+    return;
+  }
+
   document.getElementById("output").value = text.toUpperCase();
 }
 
