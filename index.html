@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta name="google-site-verification" content="jWItfoIhZreP-pLoRIACFyuvQxsQyKg0EkaxWfJFKsY" /> 
 <meta charset="UTF-8">
+<meta name="google-site-verification" content="jWItfoIhZreP-pLoRIACFyuvQxsQyKg0EkaxWfJFKsY" />
 <title>Remove Extra Spaces Online | Clean Text Tool</title>
+
 <style>
 body { font-family: Arial; max-width: 800px; margin: auto; padding: 20px; }
 textarea { width: 100%; height: 150px; margin-bottom: 10px; }
@@ -11,22 +12,25 @@ button { padding: 10px; margin: 5px; }
 .pro { background: black; color: white; }
 </style>
 </head>
+
 <body>
 
 <h1>Remove Extra Spaces from Text Online (Free Tool)</h1>
 <p>Quickly remove extra spaces, fix formatting, and clean your text online.</p>
+
 <textarea id="input" placeholder="Paste text here..."></textarea>
 <p id="counter">0 / 200</p>
 
 <button id="cleanBtn">Clean Text</button>
 <button id="upperBtn">UPPERCASE</button>
 <button id="rewriteBtn">Rewrite (PRO)</button>
+
 <h3>Result:</h3>
 <textarea id="output"></textarea>
 
 <br><br>
 
-<p><b>Limit reached fast?</b> Free version is only 200 characters. Unlock PRO for unlimited text cleaning.</p>
+<p><b>Free version:</b> 200 characters + 3 attempts. Unlock PRO for unlimited access and AI rewrite.</p>
 <button class="pro" onclick="goPay()">Unlock PRO ($5)</button>
 
 <script>
@@ -36,58 +40,57 @@ const input = document.getElementById("input");
 const output = document.getElementById("output");
 const counter = document.getElementById("counter");
 
-// счётчик символов
+// счетчик
 input.addEventListener("input", function() {
-  let length = input.value.length;
-  counter.innerText = length + " / 200";
+  counter.innerText = input.value.length + " / 200";
 });
 
-// очистка текста
-document.getElementById("cleanBtn").addEventListener("click", function() {
-  let text = input.value;
-
+// общая проверка лимитов
+function checkLimits(text) {
   attempts++;
 
   if (attempts > 3) {
     if (confirm("Free attempts finished. Go PRO?")) {
       goPay();
     }
-    return;
+    return false;
   }
 
   if (text.length > 200) {
     if (confirm("Limit reached. Unlock PRO for unlimited access?")) {
       goPay();
     }
-    return;
+    return false;
   }
+
+  return true;
+}
+
+// CLEAN
+document.getElementById("cleanBtn").addEventListener("click", function() {
+  let text = input.value;
+
+  if (!checkLimits(text)) return;
 
   text = text.replace(/\s+/g, ' ').trim();
   output.value = text;
 });
 
-// uppercase
+// UPPERCASE
 document.getElementById("upperBtn").addEventListener("click", function() {
   let text = input.value;
 
-  attempts++;
+  if (!checkLimits(text)) return;
 
-  if (attempts > 3) {
-    if (confirm("Free attempts finished. Go PRO?")) {
-      goPay();
-    }
-    return;
+  text = text.replace(/\s+/g, ' ').trim();
+  output.value = text.toUpperCase();
+});
+
+// REWRITE (PRO)
+document.getElementById("rewriteBtn").addEventListener("click", function() {
+  if (confirm("Rewrite text like a human and bypass AI detection. Unlock PRO?")) {
+    goPay();
   }
-
-  if (text.length > 200) {
-    if (confirm("Limit reached. Unlock PRO for unlimited access?")) {
-      goPay();
-    }
-    return;
-  }
-
- text = text.replace(/\s+/g, ' ').trim();
-output.value = text.toUpperCase();
 });
 
 // переход на оплату
