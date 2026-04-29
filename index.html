@@ -15,7 +15,7 @@ button { padding: 10px; margin: 5px; }
 <h1>Text Cleaner</h1>
 
 <textarea id="input" placeholder="Paste text here..."></textarea>
-
+<p id="counter">0 / 200</p>
 <button onclick="cleanText()">Clean Text</button>
 <button onclick="makeUpper()">UPPERCASE</button>
 
@@ -54,6 +54,10 @@ function makeUpper() {
 function goPay() {
   window.location.href = "https://tishka3.gumroad.com/l/zebvt";
 }
+  document.getElementById("input").addEventListener("input", function() {
+  let length = this.value.length;
+  document.getElementById("counter").innerText = length + " / 200";
+});
 </script>
 
 </body>
