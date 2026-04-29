@@ -42,7 +42,9 @@ document.getElementById("cleanBtn").addEventListener("click", function() {
   let text = input.value;
 
   if (text.length > 200) {
-    alert("Free version limit: 200 characters. Unlock PRO for unlimited.");
+   if (confirm("Limit reached. Unlock PRO for unlimited access?")) {
+  goPay();
+}
     return;
   }
 
@@ -54,7 +56,9 @@ document.getElementById("upperBtn").addEventListener("click", function() {
   let text = input.value;
 
   if (text.length > 200) {
-    alert("Free version limit: 200 characters. Unlock PRO for unlimited.");
+  if (confirm("Limit reached. Unlock PRO for unlimited access?")) {
+  goPay();
+}
     return;
   }
 
