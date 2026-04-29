@@ -29,22 +29,35 @@ button { padding: 10px; margin: 5px; }
 <button class="pro" onclick="goPay()">Unlock PRO ($5)</button>
 
 <script>
+let attempts = 0;
+
 const input = document.getElementById("input");
 const output = document.getElementById("output");
 const counter = document.getElementById("counter");
 
+// счётчик символов
 input.addEventListener("input", function() {
   let length = input.value.length;
   counter.innerText = length + " / 200";
 });
 
+// очистка текста
 document.getElementById("cleanBtn").addEventListener("click", function() {
   let text = input.value;
 
+  attempts++;
+
+  if (attempts > 3) {
+    if (confirm("Free attempts finished. Go PRO?")) {
+      goPay();
+    }
+    return;
+  }
+
   if (text.length > 200) {
-   if (confirm("Limit reached. Unlock PRO for unlimited access?")) {
-  goPay();
-}
+    if (confirm("Limit reached. Unlock PRO for unlimited access?")) {
+      goPay();
+    }
     return;
   }
 
@@ -52,19 +65,30 @@ document.getElementById("cleanBtn").addEventListener("click", function() {
   output.value = text;
 });
 
+// uppercase
 document.getElementById("upperBtn").addEventListener("click", function() {
   let text = input.value;
 
+  attempts++;
+
+  if (attempts > 3) {
+    if (confirm("Free attempts finished. Go PRO?")) {
+      goPay();
+    }
+    return;
+  }
+
   if (text.length > 200) {
-  if (confirm("Limit reached. Unlock PRO for unlimited access?")) {
-  goPay();
-}
+    if (confirm("Limit reached. Unlock PRO for unlimited access?")) {
+      goPay();
+    }
     return;
   }
 
   output.value = text.toUpperCase();
 });
 
+// переход на оплату
 function goPay() {
   window.location.href = "https://tishka3.gumroad.com/l/zebvt";
 }
