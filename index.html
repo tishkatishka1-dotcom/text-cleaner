@@ -86,7 +86,8 @@ document.getElementById("upperBtn").addEventListener("click", function() {
     return;
   }
 
-  output.value = text.toUpperCase();
+ text = text.replace(/\s+/g, ' ').trim();
+output.value = text.toUpperCase();
 });
 
 // переход на оплату
