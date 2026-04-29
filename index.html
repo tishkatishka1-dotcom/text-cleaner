@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="google-site-verification" content="jWItfoIhZreP-pLoRIACFyuvQxsQyKg0EkaxWfJFKsY" />
-<title>Remove Extra Spaces Online | Clean Text Tool</title>
+<title>Fix Text Formatting Online | Clean Text Tool</title>
 
 <style>
 body { font-family: Arial; max-width: 800px; margin: auto; padding: 20px; }
@@ -15,13 +15,13 @@ button { padding: 10px; margin: 5px; }
 
 <body>
 
-<h1>Remove Extra Spaces from Text Online (Free Tool)</h1>
-<p>Quickly remove extra spaces, fix formatting, and clean your text online.</p>
+<h1>Fix Text Formatting from ChatGPT, PDF & Websites</h1>
+<p>Clean messy text, fix spacing, restore paragraphs, and make it readable instantly.</p>
 
 <textarea id="input" placeholder="Paste text here..."></textarea>
 <p id="counter">0 / 200</p>
 
-<button id="cleanBtn">Clean Text</button>
+<button id="cleanBtn">Clean & Format</button>
 <button id="upperBtn">UPPERCASE</button>
 <button id="rewriteBtn">Rewrite (PRO)</button>
 
@@ -30,7 +30,7 @@ button { padding: 10px; margin: 5px; }
 
 <br><br>
 
-<p><b>Free version:</b> 200 characters + 3 attempts. Unlock PRO for unlimited access and AI rewrite.</p>
+<p><b>Free version:</b> 200 characters + 3 attempts. Unlock PRO for unlimited access.</p>
 <button class="pro" onclick="goPay()">Unlock PRO ($5)</button>
 
 <script>
@@ -40,12 +40,12 @@ const input = document.getElementById("input");
 const output = document.getElementById("output");
 const counter = document.getElementById("counter");
 
-// счетчик
+// счетчик символов
 input.addEventListener("input", function() {
   counter.innerText = input.value.length + " / 200";
 });
 
-// общая проверка лимитов
+// проверка лимитов
 function checkLimits(text) {
   attempts++;
 
@@ -66,24 +66,18 @@ function checkLimits(text) {
   return true;
 }
 
-// CLEAN
-document.getElementById("rewriteBtn").addEventListener("click", function() {
-  let text = input.value;
-
-  if (text.length < 50) {
-    alert("Enter more text to rewrite.");
-    return;
-  }
-
-  if (confirm("AI Rewrite is a PRO feature. Unlock now?")) {
-    goPay();
-  }
-});
+// CLEAN & FORMAT
+document.getElementById("cleanBtn").addEventListener("click", function() {
   let text = input.value;
 
   if (!checkLimits(text)) return;
 
+  // убираем лишние пробелы
   text = text.replace(/\s+/g, ' ').trim();
+
+  // делаем абзацы (простая логика)
+  text = text.replace(/\. /g, '.\n\n');
+
   output.value = text;
 });
 
@@ -99,7 +93,7 @@ document.getElementById("upperBtn").addEventListener("click", function() {
 
 // REWRITE (PRO)
 document.getElementById("rewriteBtn").addEventListener("click", function() {
-  if (confirm("Rewrite text like a human and bypass AI detection. Unlock PRO?")) {
+  if (confirm("Rewrite text like a human is a PRO feature. Unlock now?")) {
     goPay();
   }
 });
